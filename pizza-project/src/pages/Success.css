@@ -1,0 +1,268 @@
+/* Success.css */
+
+.success-container {
+  min-height: 100vh;
+  background-color: var(--beige);
+  display: flex;
+  flex-direction: column;
+}
+
+.success-header {
+  background-color: var(--red);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.success-header h1 {
+  font-family: 'Satisfy', cursive;
+  font-size: 2.5rem;
+  color: var(--white);
+  font-weight: 400;
+}
+
+.success-content {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  width: 100%;
+}
+
+/* Success Message */
+.success-message {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.congrats {
+  font-family: 'Satisfy', cursive;
+  font-size: 3.5rem;
+  color: var(--yellow);
+  margin-bottom: 10px;
+  text-transform: lowercase;
+}
+
+.success-message h2 {
+  font-size: 2.5rem;
+  color: var(--dark-gray);
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.divider {
+  width: 100px;
+  height: 4px;
+  background-color: var(--yellow);
+  margin: 30px auto;
+  border-radius: 2px;
+}
+
+/* Order Details */
+.order-details {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.order-details h3 {
+  font-size: 1.5rem;
+  color: var(--dark-gray);
+  margin-bottom: 30px;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--beige);
+}
+
+.order-info {
+  margin-bottom: 30px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--beige);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row .label {
+  font-weight: 600;
+  color: var(--dark-gray);
+  flex: 0 0 140px;
+}
+
+.info-row .value {
+  flex: 1;
+  color: var(--light-gray);
+  text-align: right;
+}
+
+/* Price Summary Box */
+.price-summary {
+  margin-top: 30px;
+}
+
+.summary-box {
+  background: linear-gradient(135deg, var(--yellow) 0%, #ffdc4e 100%);
+  padding: 30px;
+  border-radius: 12px;
+  color: var(--dark-gray);
+}
+
+.summary-box h4 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--dark-gray);
+  text-align: center;
+}
+
+.summary-box .price-details {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.summary-box .price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.summary-box .price-row.total {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid var(--yellow);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+/* New Order Button */
+.new-order-btn {
+  width: 100%;
+  padding: 18px;
+  background-color: var(--red);
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.new-order-btn:hover {
+  background-color: var(--dark-gray);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message {
+  animation: fadeIn 0.6s ease;
+}
+
+.order-details {
+  animation: fadeIn 0.8s ease;
+}
+
+.new-order-btn {
+  animation: fadeIn 1s ease;
+}
+
+/* Confetti Effect (Optional) */
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.success-message::before {
+  content: "🍕";
+  position: absolute;
+  top: -20px;
+  left: 20%;
+  font-size: 2rem;
+  animation: confetti 3s ease-in-out infinite;
+}
+
+.success-message::after {
+  content: "🎉";
+  position: absolute;
+  top: -20px;
+  right: 20%;
+  font-size: 2rem;
+  animation: confetti 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.success-message {
+  position: relative;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .success-content {
+    padding: 40px 20px;
+  }
+  
+  .congrats {
+    font-size: 2.5rem;
+  }
+  
+  .success-message h2 {
+    font-size: 2rem;
+  }
+  
+  .order-details {
+    padding: 30px 20px;
+  }
+  
+  .info-row {
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .info-row .value {
+    text-align: left;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .congrats {
+    font-size: 2rem;
+  }
+  
+  .success-message h2 {
+    font-size: 1.5rem;
+  }
+  
+  .order-details h3 {
+    font-size: 1.2rem;
+  }
+}
