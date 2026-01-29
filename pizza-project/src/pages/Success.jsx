@@ -25,44 +25,50 @@ function Success({ orderData }) {
         </div>
 
         <div className="order-details">
-          <h3>Position Absolute Acı Pizza</h3>
-          
+          <h3>{orderData.productName || 'Menü'}</h3>
+
           <div className="order-info">
             <div className="info-row">
               <span className="label">Müşteri:</span>
               <span className="value">{orderData.name}</span>
             </div>
-            
-            <div className="info-row">
-              <span className="label">Boyut:</span>
-              <span className="value">
-                {orderData.size === 'small' ? 'Küçük' : 
-                 orderData.size === 'medium' ? 'Orta' : 'Büyük'}
-              </span>
-            </div>
-            
-            <div className="info-row">
-              <span className="label">Hamur:</span>
-              <span className="value">
-                {orderData.dough === 'normal' ? 'Normal' :
-                 orderData.dough === 'thin' ? 'İnce' : 'Kalın'}
-              </span>
-            </div>
-            
-            {orderData.toppings.length > 0 && (
+
+            {orderData.size && (
+              <div className="info-row">
+                <span className="label">Boyut:</span>
+                <span className="value">
+                  {orderData.size === 'small' ? 'Küçük' :
+                    orderData.size === 'medium' ? 'Orta' :
+                      orderData.size === 'large' ? 'Büyük' : orderData.size}
+                </span>
+              </div>
+            )}
+
+            {orderData.dough && (
+              <div className="info-row">
+                <span className="label">Hamur:</span>
+                <span className="value">
+                  {orderData.dough === 'normal' ? 'Normal' :
+                    orderData.dough === 'thin' ? 'İnce' :
+                      orderData.dough === 'thick' ? 'Kalın' : orderData.dough}
+                </span>
+              </div>
+            )}
+
+            {orderData.toppings && orderData.toppings.length > 0 && (
               <div className="info-row">
                 <span className="label">Ek Malzemeler:</span>
                 <span className="value">{orderData.toppings.join(', ')}</span>
               </div>
             )}
-            
+
             {orderData.notes && (
               <div className="info-row">
                 <span className="label">Sipariş Notu:</span>
                 <span className="value">{orderData.notes}</span>
               </div>
             )}
-            
+
             <div className="info-row">
               <span className="label">Adet:</span>
               <span className="value">{orderData.quantity}</span>
@@ -86,7 +92,7 @@ function Success({ orderData }) {
           </div>
         </div>
 
-        <button 
+        <button
           className="new-order-btn"
           onClick={() => navigate('/')}
           data-cy="new-order-button"
