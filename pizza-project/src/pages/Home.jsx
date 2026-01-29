@@ -39,8 +39,16 @@ function Home() {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('pizza');
 
-  const handleOrderClick = () => {
-    navigate('/order');
+  const handleOrderClick = (product) => {
+    // Default product if none selected (e.g. from Hero button)
+    const defaultProduct = {
+      name: 'Position Absolute Acı Pizza',
+      price: 85.50,
+      description: 'Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre.',
+      type: 'pizza' // default type
+    };
+
+    navigate('/order', { state: { product: product || defaultProduct } });
   };
 
   const currentProducts = MENU_DATA[activeCategory] || [];
@@ -63,7 +71,7 @@ function Home() {
           </div>
           <button
             className="hero-button"
-            onClick={handleOrderClick}
+            onClick={() => handleOrderClick()}
             data-cy="hero-order-button"
           >
             ACIKTIM
@@ -129,7 +137,7 @@ function Home() {
                 <h3>{currentProducts[0].name}</h3>
                 <p>{currentProducts[0].description}</p>
                 <div className="price-tag">{currentProducts[0].price}₺</div>
-                <button onClick={handleOrderClick}>SİPARİŞ VER</button>
+                <button onClick={() => handleOrderClick({ ...currentProducts[0], type: activeCategory })}>SİPARİŞ VER</button>
               </div>
 
               {/* Other Items */}
@@ -140,7 +148,7 @@ function Home() {
                       <h3>{product.name}</h3>
                       <p className="small-desc">{product.description}</p>
                       <div className="price-tag-small">{product.price}₺</div>
-                      <button onClick={handleOrderClick}>SİPARİŞ VER</button>
+                      <button onClick={() => handleOrderClick({ ...product, type: activeCategory })}>SİPARİŞ VER</button>
                     </div>
                   ))}
                 </div>
