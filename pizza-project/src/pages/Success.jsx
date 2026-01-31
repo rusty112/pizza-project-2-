@@ -27,6 +27,20 @@ function Success({ orderData }) {
         <div className="order-details">
           <h3>{orderData.productName || 'Menü'}</h3>
 
+          <div className="order-product-image">
+            <img
+              src={orderData.productImage}
+              alt={orderData.productName}
+              className="order-product-img"
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23FFF7EA' /><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' font-size='96'>${orderData.productName && orderData.productName.toLowerCase().includes('pizza') ? '🍕' : orderData.productName && orderData.productName.toLowerCase().includes('burger') ? '🍔' : '🥤'}</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23333' font-family='sans-serif'>${orderData.productName}</text></svg>`;
+                e.currentTarget.src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+              }}
+            />
+          </div>
+
           <div className="order-info">
             <div className="info-row">
               <span className="label">Müşteri:</span>

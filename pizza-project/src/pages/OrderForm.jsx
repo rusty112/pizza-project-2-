@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './OrderForm.css';
+import positionAbsolutePizzaImg from '../assets/menu/position-absolute-pizza.svg';
 
 // Configuration for different product types
 const CATEGORY_CONFIG = {
@@ -76,6 +77,7 @@ function OrderForm({ onOrderSubmit }) {
   const product = location.state?.product || {
     name: 'Position Absolute Acı Pizza',
     price: 85.50,
+    image: positionAbsolutePizzaImg,
     description: 'Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir.',
     type: 'pizza'
   };
@@ -209,6 +211,7 @@ function OrderForm({ onOrderSubmit }) {
     const orderPayload = {
       ...formData,
       productName: product.name,
+      productImage: product.image || '',
       total: calculateTotal(),
       timestamp: new Date().toISOString()
     };
@@ -241,13 +244,30 @@ function OrderForm({ onOrderSubmit }) {
         </nav>
 
         <div className="product-info">
-          <h2>{product.name}</h2>
-          <p className="price">{basePrice.toFixed(2)}₺</p>
-          <div className="rating">
-            <span>4.9</span>
-            <span>(200)</span>
+          <div className="product-info-main">
+            <div className="product-left">
+              <h2>{product.name}</h2>
+              <p className="price">{basePrice.toFixed(2)}₺</p>
+              <div className="rating">
+                <span>4.9</span>
+                <span>(200)</span>
+              </div>
+              <p className="description">{product.description}</p>
+            </div>
+            <div className="product-image-wrap">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="product-image"
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'><rect width='100%' height='100%' fill='%23FFF7EA' /><text x='50%' y='40%' dominant-baseline='middle' text-anchor='middle' font-size='96'>${product.type === 'pizza' ? '🍕' : product.type === 'burger' ? '🍔' : product.type === 'icecek' ? '🥤' : '🍽️'}</text><text x='50%' y='78%' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23333' font-family='sans-serif'>${product.name}</text></svg>`;
+                  e.currentTarget.src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+                }}
+              />
+            </div>
           </div>
-          <p className="description">{product.description}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="pizza-form" data-cy="pizza-form">

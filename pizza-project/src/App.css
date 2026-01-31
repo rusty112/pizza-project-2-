@@ -13,12 +13,16 @@
   --beige: #FAF7F2;
   --white: #FFFFFF;
   --black: #000000;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --shadow-sm: 0 4px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 10px 20px rgba(0,0,0,0.12);
+  --shadow-lg: 0 30px 60px rgba(0,0,0,0.15);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --glass: rgba(255,255,255,0.6);
+  --primary-gradient-from: #FFD166;
+  --primary-gradient-to: #F97316;
+  --gap: 20px;
 }
 
 /* Reset and Base Styles */
@@ -31,8 +35,11 @@
 body {
   font-family: 'Barlow', sans-serif;
   color: var(--dark-gray);
-  background-color: var(--beige);
+  background: linear-gradient(180deg, #FFFDF9 0%, #FAF7F2 50%, #FFF7EA 100%);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
