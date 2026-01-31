@@ -71,12 +71,25 @@
 .order-details h3 {
   font-size: 1.5rem;
   color: var(--dark-gray);
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
   border-bottom: 2px solid var(--beige);
 }
 
+.order-product-image {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 24px;
+}
+
+.order-product-img {
+  width: 160px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
 .order-info {
   margin-bottom: 30px;
 }
